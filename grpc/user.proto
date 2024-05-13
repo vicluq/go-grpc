@@ -1,0 +1,26 @@
+syntax = "proto3";
+option go_package = "github.com/vicluq/go-grpc/authenticate";
+
+message Address {
+    string addrLine = 1;
+    string cityCode = 2;
+    string countryCode = 3;
+}
+
+message RegisterRequest {
+    string email = 1; // Position 1 of the msg
+    string password = 2;
+    int32 priviledge = 3;
+    Address address = 4;
+}
+
+message RegisterResponse {
+    string message = 1;
+}
+
+// Defining the service
+service Authenticate {
+    rpc Register(RegisterRequest) returns RegisterResponse;
+    rpc Login(LoginRequest) returns LoginResponse;
+}
+
